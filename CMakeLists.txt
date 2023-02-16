@@ -3,4 +3,4 @@ project(PhoneBook)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(PhoneBook main.cpp Person.h Date.h PhoneBook.h)
+add_executable(PhoneBook main.cpp Person.h Date.h PhoneBook.h FileServices.h)

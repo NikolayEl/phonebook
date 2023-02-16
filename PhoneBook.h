@@ -5,14 +5,15 @@
 #include "Person.h"
 
 class PhoneBook {
-public:
+private:
     vector<Person> persons;
 
-    void Add(Person person) {
+public:
+    void Add(const Person& person) {
         persons.push_back(person);
     }
 
-    vector<Person> FindByLastName(string last_name) {
+    vector<Person> FindByLastName(const string& last_name) {
         vector<Person> temp;
         for (const Person& person : persons) {
             if (person.last_name == last_name) {
@@ -25,13 +26,33 @@ public:
         return temp;
     }
 
-    Person FindByFirstName(string first_name) {
-        Person temp;
+    vector<Person> FindByFirstName(const string& first_name) {
+        vector<Person> temp;
+        for (const Person& person : persons) {
+            if (person.first_name == first_name) {
+                temp.push_back(person);
+            }
+        }
+
+        if (temp.empty()) throw -1;
+
         return temp;
     }
 
-    Person FindByTel(string tel) {
-        Person temp;
+    vector<Person> FindByTel(string tel) {
+        vector<Person> temp;
+        for (const Person& person : persons) {
+            if (person.tel == tel) {
+                temp.push_back(person);
+            }
+        }
+
+        if (temp.empty()) throw -1;
+
         return temp;
+    }
+
+    vector<Person> GetAllPersons() {
+        return persons;
     }
 };

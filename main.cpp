@@ -3,6 +3,7 @@
 
 #include "Person.h"
 #include "PhoneBook.h"
+#include "FileServices.h"
 
 using namespace std;
 
@@ -27,20 +28,23 @@ int main() {
     person2.date_of_birth.day = 1;
     person2.tel = "1234567890";
 
-    //cout << person1.ToString();
-    //cout << person2.ToString();
-
     PhoneBook phoneBook;
     phoneBook.Add(person1);
     phoneBook.Add(person2);
 
-    try {
+    /*try {
         auto result = phoneBook.FindByLastName("S");
         for (auto person : result) {
             cout << person.ToString();
         }
     } catch (...) {
         cerr << "Person not found" << endl;
+    }*/
+
+    try {
+        ExportToFile("phone_book.csv", phoneBook);
+    } catch (...) {
+        cerr << "File not opened" << endl;
     }
 
 
