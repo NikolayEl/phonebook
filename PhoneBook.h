@@ -9,7 +9,7 @@ private:
     vector<Person> persons;
 
 public:
-    void Add(const Person& person) {
+    void Add(Person person) {
         persons.push_back(person);
     }
 
@@ -34,7 +34,7 @@ public:
             }
         }
 
-        if (temp.empty()) throw -1;
+        if (temp.empty()) throw -2;
 
         return temp;
     }
@@ -47,7 +47,7 @@ public:
             }
         }
 
-        if (temp.empty()) throw -1;
+        if (temp.empty()) throw -3;
 
         return temp;
     }
@@ -55,4 +55,26 @@ public:
     vector<Person> GetAllPersons() {
         return persons;
     }
+
+    void PrintAllPerson () {
+        PhoneBook phoneBook;
+        for (auto person : persons) {
+            cout << person.ToString() << endl;
+        }
+    }
+
+    void DeletePerson(string last_name, string first_name, string patronimic, string tel, PhoneBook& phoneBook) {
+        vector<Person> temp;
+        int i = 0;
+        for(auto p: persons) {
+            if (p.last_name != last_name || p.first_name != first_name || p.patronymic != patronimic || p.tel != tel) {
+                temp.push_back(p);
+            }
+        }
+        phoneBook.persons.clear();
+        phoneBook.persons = temp;
+
+        if (temp.empty()) throw -4;
+    }
+
 };
